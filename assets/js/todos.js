@@ -1,26 +1,17 @@
-// Check Off Specific Todos By Clicking
-$("ul").on("click", "li", function(){
-	$(this).toggleClass("completed");
+$("ul").on("click","li",function(){
+  $(this).toggleClass("todo");
 });
-
-//Click on X to delete Todo
-$("ul").on("click", "span", function(event){
-	$(this).parent().fadeOut(500,function(){
-		$(this).remove();
-	});
-	event.stopPropagation();
+$("ul").on("click","span",function(e){
+  $(this).parent().fadeOut("slow");
+  e.stopPropagation();
 });
-
-$("input[type='text']").keypress(function(event){
-	if(event.which === 13){
-		//grabbing new todo text from input
-		var todoText = $(this).val();
-		$(this).val("");
-		//create a new li and add to ul
-		$("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todoText + "</li>")
-	}
+$("input[type='text']").keypress(function(e){
+  if(e.which === 13){//press enter to add new TODO
+    var a = $(this).val();//Take the value from input
+     $(this).val("");//After fetching value make the input empty again
+    $("ul").append("<li><span><i class='fa fa-trash'></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+a+"</li>");//Append new li and Span too
+  }
 });
-
-$("#toggle-form").click(function(){
-	$("input[type='text']").fadeToggle();
+$(".fa-plus").on("click",function(){
+  $("input").fadeToggle("slow");
 });
